@@ -35,6 +35,10 @@ div {
     width: 102%;
 }
 
+#imgLogo:hover {
+    cursor: pointer;
+}
+
 #divLogo {
     padding-left: 30px;
 }
