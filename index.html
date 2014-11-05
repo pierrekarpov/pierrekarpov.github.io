@@ -1,7 +1,225 @@
 <!DOCTYPE html>
 <html>
+    
+    <head>
+        <!--Google fonts-->
+        <link href='https://fonts.googleapis.com/css?family=Roboto+Condensed' rel='stylesheet' type='text/css'>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+        <!--<script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.11.1.min.js"></script>-->
+        <!--<script src="jquery-1.11.1.min.js"></script>-->
+        <meta charset="utf-8">
+        <!--<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">-->
+        <title>Pierre Karpov the Almighty</title>
+        <meta name="description" content="COGS 187A Portfolio analysis">
+        <link rel="stylesheet" href="main.css">
+        <!-- Latest compiled and minified CSS -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+        <!-- Optional theme -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+        <!-- Latest compiled and minified JavaScript -->
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+        <script>
+            $(document).ready(function(){
+                goTo("Home");
+                window.scrollTo(0,0);
+            });
+            function ShowProjectText(projectNumber) {
+                //alert('inside show');
+                //alert('inside show');
+                var div = $("#divProject" + projectNumber);
+                var textDiv = $("#divProject" + projectNumber + "Text");
+                
+                div.css("opacity", "0.15");
+                textDiv.css("display", "inline");
+                textDiv.css("opacity", "1.0");
+                
+            };
+            function HideProjectText(projectNumber) {
+                //alert('inside show');
+                var div = $("#divProject" + projectNumber);
+                var textDiv = $("#divProject" + projectNumber + "Text");
+                
+                div.css("opacity", "1.0");
+                textDiv.css("display", "none");
+                
+            };
+            function goTo(divToGoTo) {
+                var divDestination = $("#div" + divToGoTo + "Hidden");
+                divDestination.css("display", "inline");
+                var divDestinationHtml = divDestination.html();
+                $(".divNavigationTab").removeClass("selectedDivNavigationTab");
+                $("#div" + divToGoTo + "Tab").addClass("selectedDivNavigationTab");
+                
+                $("#divMain").html(divDestinationHtml);
+                
+                $("#divHomeHidden").css("display", "none");
+                $("#divProjectsHidden").css("display", "none");
+                $("#divInfoHidden").css("display", "none");
+                window.scrollTo(0,0); 
+            };
+            function goToProject(projectNumber) {
+                goTo("Projects");
+                var selectedProject = $("#divDetailedProject" + projectNumber);
+                var selectedProjectHTML = selectedProject.html();
+                
+                //alert('html: ' + selectedProjectHTML);
+                
+                $("#divDetailedProjectTop").html(selectedProjectHTML);
+                selectedProject.css("display", "none");
+                $("#divProjectsHidden").css("display", "none");
+                window.scrollTo(0,0); 
+            };
+        </script>
+    </head>
     <body>
-        <h1>Hello World</h1>
-        <p>Im using github pages</p>
+        <div id="divContainingAll" class="container-fluid">
+            <div id="divTopBanner" class="row">
+                <div id="divLogo" class="col-md-2">
+                    <img src="images/Logo.png" alt=""/>
+                </div>
+                <div class="col-md-10">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-md-4 divNavigationTab selectedDivNavigationTab" id="divHomeTab" onclick="goTo('Home');">Home</div>
+                            <div class="col-md-4 divNavigationTab" id="divProjectsTab" onclick="goTo('Projects');">Projects</div>
+                            <div class="col-md-4 divNavigationTab" id ="divInfoTab" onclick="goTo('Info');">Info</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div id="divMain" class="col-md-12">
+                </div>
+            </div>
+            <div id="divFooterInfo" class="row">
+                <div class="col-md-12">
+                    Contact me at:<br>
+                    pkarpov@ucsd.edu<br>
+                    facebook.com/pierre.karpov.3
+                </div>
+            </div>
+            <div class="row">
+                <div id="divHomeHidden" class="container-fluid">
+                    <div class="row">
+                        <div id="divShortDescription" class="col-md-12">
+                            Meet myself, the great, world-famous Pierre Karpov.<br>
+                            A competent, reliable, and eccentric web and iOS developer.
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="container-fluid" id="divContainerForProjects">
+                            <div class="row">
+                                <div class="col-md-6 divContainerForProject" onclick="goToProject('1');">
+                                    <div id="divProject1"  onmouseover="ShowProjectText('1');" onmouseout="HideProjectText('1');">   
+                                    </div>
+                                    <div id="divProject1Text">
+                                        <strong>Matchismo</strong><br>
+                                        An iOS game that let's<br>
+                                        the user play different<br>
+                                        card games on their phones.
+                                    </div>
+                                </div>
+                                <div class="col-md-6 divContainerForProject" onclick="goToProject('2');">
+                                    <div id="divProject2"  onmouseover="ShowProjectText('2');" onmouseout="HideProjectText('2');">   
+                                    </div>
+                                    <div id="divProject2Text">
+                                        <strong>HSStats</strong><br>
+                                        An iOS app that keeps track<br>
+                                        of the user win/loss ratio<br>
+                                        in Hearthstone, to make the<br>
+                                        user better.
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6 divContainerForProject"  onclick="goToProject('3');">
+                                    <div id="divProject3"  onmouseover="ShowProjectText('3');" onmouseout="HideProjectText('3');">   
+                                    </div>
+                                    <div id="divProject3Text">
+                                        <strong>StoreWithMe</strong><br>
+                                        A Webapp where the user<br>
+                                        can post and search offers<br>
+                                        for temporary peer to peer storage.
+                                    </div>
+                                </div>
+                                <div class="col-md-6 divContainerForProject"  onclick="goToProject('4');">
+                                    <div id="divProject4"  onmouseover="ShowProjectText('4');" onmouseout="HideProjectText('4');">   
+                                    </div>
+                                    <div id="divProject4Text">
+                                        <strong>Winplateforme</strong><br>
+                                        A Webapp for French<br>
+                                        pharmacists.It has all what<br>
+                                        the user needs in one<br>
+                                        convinient website.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="divProjectsHidden" class="container-fluid">
+                    <div class="row" id="divDetailedProjectTop">
+                    </div>
+                    <div class="row" id="divDetailedProject1">
+                        <div class="col-md-8">
+                            <strong>Matchismo</strong><br><br>
+                            This is a iOS app witg two different card games in it.<br>
+                            One of them in a card matching game, the user can flip the cards and tries to match them the bect they can.<br>
+                            The other game is called Set. The user needs to match cards by sets, depending on the shape, color, filling, and number of the card.<br>
+                            I wrote this project entirely, so I had to handle not only the user interface, but also all the gameplay logic. I also created custom views to make the cards look good.
+                        </div>
+                        <div id="divImgProject1" class="col-md-4"></div>
+                    </div>
+                    <div class="row" id="divDetailedProject2">
+                        <div class="col-md-8">
+                            <strong>HSStats</strong><br><br>
+                            I really enjoy playing Hearthstone. In this game, you create your own deck, and you play against other people. If you win your rank gets better, otherwise, it gets worst. I have noticed that the popular decks are not always the same. So I thought about an app that keep track of which deck you encounter at which rank. So the user can have an idea of what the opponent's deck is likely to have. <br>
+                            Also, my app tells the user which deck they should use at a certain rank, based on their win/loss ratio against the most popular decks.
+                        </div>
+                        <div id="divImgProject2" class="col-md-4"></div>
+                    </div>
+                    <div class="row" id="divDetailedProject3">
+                        <div class="col-md-8">
+                            <strong>StoreWithMe</strong><br><br>
+                            During CalHacks 2014, my team and I came up with a fancy project. As students, it is sometimes a struggle to find a storage unit over the summer, most of the time, we have to rent a gigantic place for more than the period that we need. So we thought of a equivalent of Craigslist, but for storage units only. So if someone has an extra closet, or an attic that they are not using, they can post an offer on our <a href="http://www.plshire.me/storewithme/">site</a>.<br>
+                            I mainly worked on the iOS part of our project, I implemented features such as geolocalization, dropbox and other, to make an easy to use application.
+                        </div>
+                        <div id="divImgProject3" class="col-md-4"></div>
+                    </div>
+                    <div class="row" id="divDetailedProject4">
+                        <div class="col-md-8">
+                            <strong>Winplateforme</strong><br><br>
+                            Winplateforme is pretty much Facebook, but for French pharmacists. However, it goes beyond its social aspect. Winplateforme helps pharmacists manage their team, buy products, assign tasks. I work on two main parts of this web application. 
+                            First, I created a page where the user can see the website's statistics. To do so, I gathered the data, and grouped it in an intelligent maner. Finally, I used JQPlot to display the data.<br> 
+                            I also worked on the implementation of hashtags in the system. I used string recognition methods to detect hashtags, and then I generated useful metadata about those tags. For instance, who wrote it, in which post, when. Finally, I created a page where the user can see the most popular hashtags, and how often they were used month by month.
+                        </div>
+                        <div id="divImgProject4" class="col-md-4"></div>
+                    </div>
+                </div>
+                <div id="divInfoHidden" class="container-fluid">
+                    <div class="row">
+                        <div class="col-md-8" id="divProfessionalInfo">
+                            My name is Pierre Karpov<br>
+                            I was born in France, and I have lived there until I came to th USA for college.
+                            I studied at the prestigious highschool College Stanislas, which is one of the top schools in the nation.<br>
+                            I now study computer science with a specialization in Artificial Inteligence at UCSD.<br>
+                            I am a passionate, competent programmer, as my personal projects and my work history can testify<br>
+                            If you would like to see my resume, here is a <a href="files/Jacobs%20School%20of%20Engineering_%20Student%20Resume.pdf">link</a> to it<br>
+                        </div>
+                        <div class="col-md-4"><img src="images/UCSDLogo.png" alt=""/></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6"><img src="images/PersonalPictures.png" alt=""/></div>
+                        <div class="col-md-6" id="divPersonalInfo">
+                            I think that you have understood by now that I am not your average guy. I try as much as I can to do what I want to do, even if it means being seen as a weirdo or a misfit.<br>
+                            For instance, despite my passion for academics, I love doing physical activities as well. On your left you can see pictures of me kitesurfing, and one with my rugby team.<br>
+                            Something else that is vital to me is to entertain people. I really enjoy bringing a smile on someone's face. And this is why I love doing magic tricks so much. Did I mentionned that I am a magician? I am pretty decent at it, I even worked in a restaurant to entertain the customers with some trics. On the left you can see me performing a card trick, completely blindfolded.<br>
+                            Finaly, I think is most important thing for me is to have fun. Life is too short to be serious, that is why I like to act silly, by surfing with a horse mask for instance.
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </body>
 </html>
